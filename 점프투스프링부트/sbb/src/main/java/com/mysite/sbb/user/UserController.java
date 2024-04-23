@@ -18,11 +18,13 @@ public class UserController {
 
     private final UserService userService;
 
+    // 회원가입 폼 출력
     @GetMapping("/signup")
     public String signup(UserCreateForm userCreateForm) {
         return "signup_form";
     }
 
+    // 회원가입 기능
     @PostMapping("/signup")
     public String signup(@Valid UserCreateForm userCreateForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -49,5 +51,12 @@ public class UserController {
         }
 
         return "redirect:/";
+    }
+
+    // 로그인 화면 폼 출력
+    // @PostMapping은 스프링 시큐리티가 대신 처리하므로 코드 작성할 필요 없다.
+    @GetMapping("/login")
+    public String login() {
+        return "login_form";
     }
 }
